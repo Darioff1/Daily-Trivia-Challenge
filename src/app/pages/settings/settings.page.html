@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Settings</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-list>
+    <ion-item>
+      <ion-label>Difficulty</ion-label>
+      <ion-select interface="action-sheet" [(ngModel)]="settings.difficulty" (ionChange)="saveSettings()">
+        <ion-select-option value="easy">Easy</ion-select-option>
+        <ion-select-option value="medium">Medium</ion-select-option>
+        <ion-select-option value="hard">Hard</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Daily Notifications</ion-label>
+      <ion-toggle [(ngModel)]="settings.notifications" (ionChange)="saveSettings()"></ion-toggle>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="block" color="danger" class="ion-margin-top" (click)="clearHistory()">
+    Clear History
+  </ion-button>
+
+</ion-content>

@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>History</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div *ngIf="history.length === 0" class="ion-text-center ion-padding">
+    <p>No questions answered yet. Go to Home to start playing!</p>
+  </div>
+
+  <ion-list *ngIf="history.length > 0">
+    <ion-item *ngFor="let item of history">
+      <ion-icon
+        slot="start"
+        [name]="item.isCorrect ? 'checkmark-circle' : 'close-circle'"
+        [color]="item.isCorrect ? 'success' : 'danger'">
+      </ion-icon>
+      <ion-label>
+        <h2>{{ item.question }}</h2>
+        <p>Your answer: {{ item.selectedAnswer }}</p>
+        <p>Correct answer: {{ item.correctAnswer }}</p>
+        <p>{{ item.category }} · {{ item.difficulty }} · {{ item.date }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Daily Trivia</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div *ngIf="loading" class="loading-container">
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
+
+  <ion-card *ngIf="!loading && question">
+    <ion-card-header>
+      <ion-badge color="secondary">{{ decodeHtml(question.category) }}</ion-badge>
+      <ion-badge color="medium" class="ion-margin-start">{{ question.difficulty }}</ion-badge>
+      <ion-card-title class="ion-margin-top">{{ decodeHtml(question.question) }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <button
+        *ngFor="let answer of answers"
+        class="answer-option"
+        [class.correct]="selectedAnswer && answer === question.correct_answer"
+        [class.wrong]="selectedAnswer && answer === selectedAnswer && answer !== question.correct_answer"
+        (click)="selectAnswer(answer)">
+        {{ decodeHtml(answer) }}
+      </button>
+
+      <div *ngIf="selectedAnswer" class="result-text ion-text-center ion-padding">
+        <h2>{{ isCorrect ? '✅ Correct!' : '❌ Wrong!' }}</h2>
+        <button class="next-btn" (click)="loadQuestion()">Next Question</button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
