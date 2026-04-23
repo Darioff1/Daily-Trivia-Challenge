@@ -1,0 +1,7 @@
+{
+  "name": "daily-trivia-challenge-v2",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
