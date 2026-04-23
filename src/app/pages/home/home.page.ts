@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonBadge, IonSpinner } from '@ionic/angular/standalone';
 import { TriviaService, TriviaQuestion } from '../../services/trivia.service';
@@ -11,7 +11,7 @@ import { StorageService } from '../../services/storage.service';
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonBadge, IonSpinner, CommonModule, NgFor, NgIf]
 })
-export class HomePage implements OnInit {
+export class HomePage {
 
   question: TriviaQuestion | null = null;
   answers: string[] = [];
@@ -22,7 +22,7 @@ export class HomePage implements OnInit {
 
   constructor(private triviaService: TriviaService, private storageService: StorageService) {}
 
-  async ngOnInit() {
+  async ionViewWillEnter() {
     await this.storageService.init();
     await this.loadDifficulty();
     this.loadQuestion();
